@@ -51,10 +51,9 @@ jobs:
         sleep 20
         yarn e2e-test
         sleep 10
-      working-directory: packages/mobile-app
       
     - name: upload recording
       uses: actions/upload-artifact@master
       with:
         name: e2e_test_recording_${{ matrix.device }}
-        path: packages/mobile-app/artifacts
+        path: .
