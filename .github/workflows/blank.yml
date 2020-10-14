@@ -26,6 +26,8 @@ jobs:
         path: node_modules
         key: node-modules-${{ hashFiles('**/yarn.lock') }}
 
+    - name: Install detox
+      run: npm install -g expo-detox-cli
     - name: Rebuild detox
       if: steps.cache.outputs.cache-hit == 'true'
       run: yarn detox clean-framework-cache && yarn detox build-framework-cache
@@ -37,6 +39,7 @@ jobs:
     - run: brew tap wix/brew
     - run: brew install applesimutils
     - run: xcode-select -p
+    - run: xcrun simctl list
     - run: open /Applications/Xcode_11.2.app/Contents/Developer/Applications/Simulator.app/
     - run: npm i -g expo-cli
     - run: nohup yarn start -ic &
