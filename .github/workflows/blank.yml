@@ -26,12 +26,15 @@ jobs:
         path: node_modules
         key: node-modules-${{ hashFiles('**/yarn.lock') }}
 
-    - name: Install detox
-      run: yarn global add expo-detox-cli
-    - name: Rebuild detox
-      if: steps.cache.outputs.cache-hit == 'true'
-      run: yarn detox clean-framework-cache && yarn detox build-framework-cache
+#     - name: Install detox
+#       run: yarn global add expo-detox-cli
+#     - name: Rebuild detox
+#       if: steps.cache.outputs.cache-hit == 'true'
+#       run: yarn detox clean-framework-cache && yarn detox build-framework-cache
 
+    - name: Detoxxx
+      run: npm install -g expo-detox-cli && expotox clean-framework-cache && expotox build-framework-cache
+    
     - name: Install Dependencies
       if: steps.cache.outputs.cache-hit != 'true'
       run: yarn install
