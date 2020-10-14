@@ -49,16 +49,12 @@ jobs:
       run: |
         yarn ios --no-dev --minify &
         sleep 20
-        xcrun simctl io booted recordVideo recording.mov &
-        sleep 5
-        export RECORDING_PID=${!}
-        echo "Recoding simulator with pid: ${RECORDING_PID}"
         yarn e2e-test
-        kill -SIGINT $RECORDING_PID
         sleep 10
-        cp recording.mov /tmp/e2e_test
+      working-directory: packages/mobile-app
+      
     - name: upload recording
       uses: actions/upload-artifact@master
       with:
         name: e2e_test_recording_${{ matrix.device }}
-        path: /tmp/e2e_test
+        path: packages/mobile-app/artifacts
