@@ -43,11 +43,12 @@ jobs:
       run: |
         brew tap wix/brew
         brew install applesimutils
-
+    
+    - run: open /Applications/Xcode_11.2.app/Contents/Developer/Applications/Simulator.app/
     - run: yarn global add expo-cli
     - name: Do the magic
       run: |
-        yarn ios --no-dev --minify &
+        yarn start --no-dev --minify &
         sleep 20
         yarn e2e-test
         sleep 10
