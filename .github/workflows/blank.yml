@@ -19,12 +19,12 @@ jobs:
     - name: Node
       uses: actions/setup-node@v1
 
-    - name: Cache node modules
-      uses: actions/cache@v1
-      id: cache
-      with:
-        path: node_modules
-        key: node-modules-${{ hashFiles('**/yarn.lock') }}
+#     - name: Cache node modules
+#       uses: actions/cache@v1
+#       id: cache
+#       with:
+#         path: node_modules
+#         key: node-modules-${{ hashFiles('**/yarn.lock') }}
 
 #     - name: Install detox
 #       run: yarn global add expo-detox-cli
@@ -32,11 +32,11 @@ jobs:
 #       if: steps.cache.outputs.cache-hit == 'true'
 #       run: yarn detox clean-framework-cache && yarn detox build-framework-cache
 
-    - name: Detoxxx
-      run: npm install -g expo-detox-cli && detox clean-framework-cache && detox build-framework-cache
+#     - name: Detoxxx
+#       run: npm install -g expo-detox-cli && expotox clean-framework-cache && expotox build-framework-cache
     
     - name: Install Dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
+#       if: steps.cache.outputs.cache-hit != 'true'
       run: yarn install
 
     - name: Prepare Detox
@@ -47,7 +47,7 @@ jobs:
     - run: yarn global add expo-cli
     - name: Do the magic
       run: |
-        expo start --no-dev --minify &
+        expo start -ic --no-dev --minify &
         sleep 20
         xcrun simctl io booted recordVideo recording.mov &
         sleep 5
