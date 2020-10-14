@@ -1,0 +1,14 @@
+name: iOS
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    timeout-minutes: 15
+
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_11.2.app
+
+    steps:
+    - run: xcode-select -p
