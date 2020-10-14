@@ -36,15 +36,15 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       run: yarn install
 
-    - run: brew tap wix/brew
-    - run: brew install applesimutils
-    - run: xcode-select -p
-    - run: xcrun simctl list
-    - run: open /Applications/Xcode_11.2.app/Contents/Developer/Applications/Simulator.app/
+    - name: Prepare Detox
+      run: |
+        brew tap wix/brew
+        brew install applesimutils
+
     - run: yarn global add expo-cli
     - name: Do the magic
       run: |
-        yarn start -i &
+        expo start --no-dev --minify &
         sleep 20
         xcrun simctl io booted recordVideo recording.mov &
         sleep 5
