@@ -27,7 +27,7 @@ jobs:
         key: node-modules-${{ hashFiles('**/yarn.lock') }}
 
     - name: Install detox
-      run: npm install -g expo-detox-cli
+      run: yarn global add expo-detox-cli
     - name: Rebuild detox
       if: steps.cache.outputs.cache-hit == 'true'
       run: yarn detox clean-framework-cache && yarn detox build-framework-cache
@@ -41,6 +41,21 @@ jobs:
     - run: xcode-select -p
     - run: xcrun simctl list
     - run: open /Applications/Xcode_11.2.app/Contents/Developer/Applications/Simulator.app/
-    - run: npm i -g expo-cli
-    - run: nohup yarn start -ic &
-    - run: yarn e2e-test
+    - run: yarn global add expo-cli
+    - name: Do the magic
+      run: |
+        yarn start -i &
+        sleep 20
+        xcrun simctl io booted recordVideo recording.mov &
+        sleep 5
+        export RECORDING_PID=${!}
+        echo "Recoding simulator with pid: ${RECORDING_PID}"
+        yarn e2e-test
+        kill -SIGINT $RECORDING_PID
+        sleep 10
+        cp recording.mov /tmp/e2e_test
+    - name: upload recording
+      uses: actions/upload-artifact@master
+      with:
+        name: e2e_test_recording_${{ matrix.device }}
+        path: /tmp/e2e_test
