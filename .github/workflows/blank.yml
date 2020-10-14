@@ -47,7 +47,7 @@ jobs:
     - run: yarn global add expo-cli
     - name: Do the magic
       run: |
-        expo start -ic --no-dev --minify &
+        yarn ios --no-dev --minify &
         sleep 20
         xcrun simctl io booted recordVideo recording.mov &
         sleep 5
