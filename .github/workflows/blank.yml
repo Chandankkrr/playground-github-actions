@@ -34,10 +34,10 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       run: yarn install
 
-#     - run: brew tap wix/brew
-#     - run: brew install applesimutils
+    - run: brew tap wix/brew
+    - run: brew install applesimutils
     - run: xcode-select -p
     - run: open /Applications/Xcode_11.2.app/Contents/Developer/Applications/Simulator.app/
-#     - run: npm i -g expo-cli
-#     - run: nohup yarn start -ic &
-#     - run: yarn e2e-test
+    - run: npm i -g expo-cli
+    - run: nohup yarn start -ic &
+    - run: yarn e2e-test
