@@ -8,6 +8,6 @@ describe('order', () => {
       .withTimeout(5000)
   })
   it('App start', async () => {
-    await expect(element(by.id("tab-one1"))).toBeVisible()
+    await expect(element(by.id("tab-one"))).toBeVisible()
   })
 })

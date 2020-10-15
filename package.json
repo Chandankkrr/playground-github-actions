@@ -7,7 +7,7 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest --watchAll",
-    "e2e-test": "sh e2e/getExpoApp.sh && detox test --loglevel verbose --record-videos all --take-screenshots all"
+    "e2e-test": "detox test --loglevel verbose --record-videos all --take-screenshots all --debug-synchronization 200"
   },
   "jest": {
     "preset": "jest-expo"
