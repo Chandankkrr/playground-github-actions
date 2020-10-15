@@ -43,18 +43,18 @@ jobs:
       run: |
         brew tap wix/brew
         brew install applesimutils
-
+    
+    - run: open /Applications/Xcode_11.2.app/Contents/Developer/Applications/Simulator.app/
     - run: yarn global add expo-cli
     - name: Do the magic
       run: |
-        yarn ios --no-dev --minify &
+        yarn start --no-dev --minify &
         sleep 20
         yarn e2e-test
         sleep 10
-      working-directory: packages/mobile-app
       
     - name: upload recording
       uses: actions/upload-artifact@master
       with:
         name: e2e_test_recording_${{ matrix.device }}
-        path: packages/mobile-app/artifacts
+        path: .
