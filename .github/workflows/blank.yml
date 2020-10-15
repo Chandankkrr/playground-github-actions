@@ -41,8 +41,7 @@ jobs:
       run: |
         yarn ios --no-dev --minify &
         sleep 30
-    
-    - run: yarn e2e-test
+        yarn e2e-test &
       
     - name: upload recording
       uses: actions/upload-artifact@master
