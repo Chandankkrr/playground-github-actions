@@ -43,9 +43,8 @@ jobs:
     - run: yarn global add expo-cli
     - name: Do the magic
       run: |
-        yarn start --no-dev --minify &
+        yarn start --ios --no-dev --minify &
         sleep 60
-        xcrun simctl openurl booted exp://10.40.0.36:19000
         mkdir -p ${{ github.workspace }}/artifact
         cd ${{ github.workspace }}/artifact
         xcrun simctl io booted screenshot screenshot.png
