@@ -40,11 +40,11 @@ jobs:
     - name: Do the magic
       run: |
         yarn ios --no-dev --minify &
-        sleep 30
-        yarn e2e-test &
+        sleep 300
+        yarn e2e-test
       
-    - name: upload recording
-      uses: actions/upload-artifact@master
-      with:
-        name: e2e_test_recording_${{ matrix.device }}
-        path: .
+#     - name: upload recording
+#       uses: actions/upload-artifact@master
+#       with:
+#         name: e2e_test_recording_${{ matrix.device }}
+#         path: .
