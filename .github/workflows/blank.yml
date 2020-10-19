@@ -49,6 +49,8 @@ jobs:
       
     - name: upload recording
       uses: actions/upload-artifact@master
+      if: failure()
       with:
         name: e2e_ios_simulator_screenshot_${{ matrix.device }}
         path: ${{ github.workspace }}/artifact/**/*
+        if-no-files-found: 'warn'
