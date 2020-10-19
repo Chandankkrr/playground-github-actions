@@ -39,12 +39,13 @@ jobs:
     - run: yarn global add expo-cli
     - name: Do the magic
       run: |
-        yarn ios --no-dev --minify &
+        yarn start --no-dev --minify &
         sleep 300
         mkdir -p ${{ github.workspace }}/artifact
         cd ${{ github.workspace }}/artifact
         xcrun simctl io booted screenshot screenshot.png
-        
+        xcrun simctl openurl booted exp://127.0.0.1:19000
+        sleep 20
         yarn e2e-test
       
     - name: upload recording
