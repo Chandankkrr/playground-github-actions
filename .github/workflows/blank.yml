@@ -45,6 +45,12 @@ jobs:
       run: |
         yarn start --ios --no-dev --minify &
         sleep 30
+        xcrun simctl shutdown all
+        sleep 30
+        open /Applications/Xcode_11.2.app/Contents/Developer/Applications/Simulator.app/
+        sleep 60
+        yarn start --no-dev --minify &
+        sleep 30
         xcrun simctl launch booted host.exp.Exponent
         mkdir -p ${{ github.workspace }}/artifact
         cd ${{ github.workspace }}/artifact
