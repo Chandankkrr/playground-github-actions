@@ -43,7 +43,7 @@ jobs:
     - run: yarn global add expo-cli
     - name: Do the magic
       run: |
-        yarn start --no-dev --minify &
+        yarn start --ios --no-dev --minify &
         sleep 30
         xcrun simctl launch booted host.exp.Exponent
         mkdir -p ${{ github.workspace }}/artifact
