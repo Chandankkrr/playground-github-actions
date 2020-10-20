@@ -49,6 +49,8 @@ jobs:
         sleep 10
         xcrun simctl boot 'iPhone 11 Pro Max'
         sleep 10
+        expotox clean-framework-cache && expotox build-framework-cache
+        sleep 10
         yarn start --no-dev --minify &
         sleep 30
         xcrun simctl launch booted host.exp.Exponent
@@ -56,7 +58,9 @@ jobs:
         cd ${{ github.workspace }}/artifact
         xcrun simctl io booted screenshot screenshot.png
         sleep 20
+        xcrun simctl io booted screenshot screenshot_1.png
         yarn e2e-test
+        xcrun simctl io booted screenshot screenshot_3.png
       
     - name: upload screenshot
       uses: actions/upload-artifact@master
