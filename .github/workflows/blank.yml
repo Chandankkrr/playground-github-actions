@@ -48,6 +48,8 @@ jobs:
         xcrun simctl shutdown all
         sleep 30
         open /Applications/Xcode_11.2.app/Contents/Developer/Applications/Simulator.app/
+        sleep 10
+        open -a Simulator
         sleep 60
         yarn start --no-dev --minify &
         sleep 30
