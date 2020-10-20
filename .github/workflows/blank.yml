@@ -39,7 +39,7 @@ jobs:
 #     - run: xcrun simctl erase 'iPhone 8'
 #     - run: xcrun simctl shutdown all
     
-    - run: npm install -g expo-detox-cli && expotox clean-framework-cache && expotox build-framework-cache
+#     - run: npm install -g expo-detox-cli && expotox clean-framework-cache && expotox build-framework-cache
     - run: open /Applications/Xcode_11.2.app/Contents/Developer/Applications/Simulator.app/
     - run: yarn global add expo-cli
     - name: Do the magic
@@ -58,6 +58,7 @@ jobs:
         xcrun simctl io booted screenshot screenshot.png
         sleep 20
         xcrun simctl io booted screenshot screenshot_1.png
+        npm install -g expo-detox-cli && expotox clean-framework-cache && expotox build-framework-cache
         yarn e2e-test
         xcrun simctl io booted screenshot screenshot_3.png
       
