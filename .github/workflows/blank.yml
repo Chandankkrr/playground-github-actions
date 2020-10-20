@@ -46,11 +46,9 @@ jobs:
         yarn start --ios --no-dev --minify &
         sleep 30
         xcrun simctl shutdown all
-        sleep 30
-        open /Applications/Xcode_11.2.app/Contents/Developer/Applications/Simulator.app/
         sleep 10
-        open -a Simulator
-        sleep 60
+        xcrun simctl boot 'iPhone 11 Pro Max'
+        sleep 10
         yarn start --no-dev --minify &
         sleep 30
         xcrun simctl launch booted host.exp.Exponent
