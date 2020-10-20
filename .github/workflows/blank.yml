@@ -45,7 +45,7 @@ jobs:
       run: |
         yarn start --ios --no-dev --minify &
         sleep 30
-        xcrun simctl shutdown all
+        xcrun simctl shutdown 'iPhone 11 Pro Max'
         sleep 10
         xcrun simctl boot 'iPhone 11 Pro Max'
         sleep 10
